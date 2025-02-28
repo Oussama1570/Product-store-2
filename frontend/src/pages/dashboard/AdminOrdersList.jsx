@@ -1,21 +1,24 @@
 import React from "react";
-import { useGetAllOrdersQuery, useUpdateOrderMutation } from "../../redux/features/orders/ordersApi";
+import { useGetAllOrdersQuery, useUpdateOrderMutation } from "../../redux/features/orders/ordersApi"; // Import the mutation hook
 import "./AdminOrdersList.css";
 
 const AdminOrdersList = () => {
   const { data: orders, error, isLoading } = useGetAllOrdersQuery();
-  const [updateOrder] = useUpdateOrderMutation();
+  const [updateOrder] = useUpdateOrderMutation(); // Hook to update the order
 
   if (isLoading) return <p>Loading orders...</p>;
   if (error) return <p>Error fetching orders: {error.message}</p>;
 
+  // Function to handle status change
   const handleStatusChange = async (orderId, isPaid, isDelivered) => {
-    try {
-      await updateOrder({ orderId, isPaid, isDelivered }).unwrap();
-    } catch (err) {
-      console.error("Error updating order:", err);
-    }
-  };
+  try {
+    console.log({ orderId, isPaid, isDelivered }); // Log the data being sent
+    await updateOrder({ orderId, isPaid, isDelivered }).unwrap();
+  } catch (err) {
+    console.error("Error updating order:", err);
+  }
+};
+  
 
   return (
     <div className="admin-orders-list">
@@ -54,6 +57,7 @@ const AdminOrdersList = () => {
                 <td>{new Date(order.createdAt).toLocaleDateString()}</td>
                 <td>${order.totalPrice}</td>
 
+                {/* Paid dropdown selector */}
                 <td>
                   <select
                     value={order.isPaid ? "Yes" : "No"}
@@ -66,6 +70,7 @@ const AdminOrdersList = () => {
                   </select>
                 </td>
 
+                {/* Delivered dropdown selector */}
                 <td>
                   <select
                     value={order.isDelivered ? "Yes" : "No"}

@@ -15,11 +15,9 @@ const getOrderByEmail = async (req, res) => {
   try {
     const { email } = req.params;
     const orders = await Order.find({ email }).sort({ createdAt: -1 });
-
-    if (!orders || orders.length === 0) {
-      return res.status(404).json({ message: "No orders found for this email." });
+    if (!orders) {
+      return res.status(404).json({ message: "Order not found" });
     }
-
     res.status(200).json(orders);
   } catch (error) {
     console.error("Error fetching orders", error);
@@ -68,7 +66,7 @@ const updateOrderStatus = async (req, res) => {
 
 module.exports = {
   createAOrder,
-  getOrderByEmail, // Ensure this function is exported correctly
+  getOrderByEmail,
   getAllOrders,
-  updateOrderStatus,
+  updateOrderStatus, // Ensure this function is exported
 };

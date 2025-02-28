@@ -1,4 +1,3 @@
-// index.js or app.js
 const express = require("express");
 const app = express();
 const cors = require("cors");
@@ -40,7 +39,7 @@ const userRoutes = require("./src/users/user.route");
 const adminRoutes = require("./src/stats/admin.stats");
 
 app.use("/api/products", productRoutes);
-app.use("/api/orders", orderRoutes); // Ensure the correct order route
+app.use("/api/orders", orderRoutes);
 app.use("/api/auth", userRoutes);
 app.use("/api/admin", adminRoutes);
 

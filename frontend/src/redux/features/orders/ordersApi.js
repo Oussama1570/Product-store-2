@@ -12,36 +12,42 @@ const ordersApi = createApi({
   endpoints: (builder) => ({
     createOrder: builder.mutation({
       query: (newOrder) => ({
-        url: "/", // Make sure this matches the backend route
+        url: "/",
         method: "POST",
         body: newOrder,
+        credentials: "include",
       }),
       invalidatesTags: ["Orders"],
     }),
     getOrderByEmail: builder.query({
-      query: (email) => `/email/${email}`,
+      query: (email) => ({
+        url: `/email/${email}`,
+      }),
       providesTags: ["Orders"],
     }),
     getAllOrders: builder.query({
       query: () => "/",
       providesTags: ["Orders"],
     }),
+
     updateOrder: builder.mutation({
-      query: ({ orderId, field, value }) => ({
-        url: `/${orderId}`, // Ensure this matches the backend API
-        method: "PATCH",
-        body: { [field]: value }, // Dynamically update either "isPaid" or "isDelivered"
+        query: ({ orderId, field, value }) => ({
+          url: `/${orderId}`, // Assuming your API allows updating the order with its ID
+          method: "PATCH",
+          body: { [field]: value }, // Dynamically updating either "isPaid" or "isDelivered"
+          credentials: "include",
+        }),
+        invalidatesTags: ["Orders"], 
       }),
-      invalidatesTags: ["Orders"],
-    }),
+      
   }),
 });
 
 export const {
-  useCreateOrderMutation, // Ensure this is correctly exported
+  useCreateOrderMutation,
   useGetOrderByEmailQuery,
   useGetAllOrdersQuery,
-  useUpdateOrderMutation,
+  useUpdateOrderMutation, // Export the updateOrder mutation hook
 } = ordersApi;
 
 export default ordersApi;
