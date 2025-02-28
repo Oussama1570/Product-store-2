@@ -1,24 +1,21 @@
 import React from "react";
-import { useGetAllOrdersQuery, useUpdateOrderMutation } from "../../redux/features/orders/ordersApi"; // Import the mutation hook
+import { useGetAllOrdersQuery, useUpdateOrderMutation } from "../../redux/features/orders/ordersApi";
 import "./AdminOrdersList.css";
 
 const AdminOrdersList = () => {
   const { data: orders, error, isLoading } = useGetAllOrdersQuery();
-  const [updateOrder] = useUpdateOrderMutation(); // Hook to update the order
+  const [updateOrder] = useUpdateOrderMutation();
 
   if (isLoading) return <p>Loading orders...</p>;
   if (error) return <p>Error fetching orders: {error.message}</p>;
 
-  // Function to handle status change
   const handleStatusChange = async (orderId, isPaid, isDelivered) => {
-  try {
-    console.log({ orderId, isPaid, isDelivered }); // Log the data being sent
-    await updateOrder({ orderId, isPaid, isDelivered }).unwrap();
-  } catch (err) {
-    console.error("Error updating order:", err);
-  }
-};
-  
+    try {
+      await updateOrder({ orderId, isPaid, isDelivered }).unwrap();
+    } catch (err) {
+      console.error("Error updating order:", err);
+    }
+  };
 
   return (
     <div className="admin-orders-list">
@@ -32,7 +29,7 @@ const AdminOrdersList = () => {
               <th>Email</th>
               <th>Phone</th>
               <th>Product IDs</th>
-              <th>Address</th>
+              <th>Street</th>
               <th>City</th>
               <th>State</th>
               <th>Zipcode</th>
@@ -50,14 +47,12 @@ const AdminOrdersList = () => {
                 <td>{order.email || "N/A"}</td>
                 <td>{order.phone || "N/A"}</td>
                 <td>{order.productIds.join(", ") || "N/A"}</td>
-                <td>{order.address?.address || "N/A"}</td>
+                <td>{order.address?.street || "N/A"}</td>
                 <td>{order.address?.city || "N/A"}</td>
                 <td>{order.address?.state || "N/A"}</td>
                 <td>{order.address?.zipcode || "N/A"}</td>
                 <td>{new Date(order.createdAt).toLocaleDateString()}</td>
                 <td>${order.totalPrice}</td>
-
-                {/* Paid dropdown selector */}
                 <td>
                   <select
                     value={order.isPaid ? "Yes" : "No"}
@@ -69,8 +64,6 @@ const AdminOrdersList = () => {
                     <option value="No">No</option>
                   </select>
                 </td>
-
-                {/* Delivered dropdown selector */}
                 <td>
                   <select
                     value={order.isDelivered ? "Yes" : "No"}
