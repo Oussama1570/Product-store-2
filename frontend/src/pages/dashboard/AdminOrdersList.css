@@ -1,0 +1,126 @@
+.admin-orders-list {
+    max-width: 100%;
+    margin: 20px;
+    overflow-x: auto;
+    font-family: 'Arial', sans-serif;
+  }
+  
+  .admin-orders-list h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+    font-size: 2rem;
+  }
+  
+  .orders-table-container {
+    max-width: 100%;
+    overflow-x: auto;
+    margin-top: 20px;
+    padding: 10px;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+  }
+  
+  .orders-table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .orders-table th,
+  .orders-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+    word-wrap: break-word;
+  }
+  
+  .orders-table th {
+    background-color: #4CAF50;
+    color: white;
+    font-weight: bold;
+  }
+  
+  .orders-table tbody tr:nth-child(even) {
+    background-color: #f7f7f7;
+  }
+  
+  .orders-table tbody tr:hover {
+    background-color: #f1f1f1;
+    transition: background-color 0.3s ease;
+  }
+  
+  .orders-table td {
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  .orders-table td:nth-child(1),
+  .orders-table td:nth-child(2),
+  .orders-table td:nth-child(3),
+  .orders-table td:nth-child(4),
+  .orders-table td:nth-child(5) {
+    width: 25px;
+  }
+  
+  .orders-table td:nth-child(6),
+  .orders-table td:nth-child(7),
+  .orders-table td:nth-child(8),
+  .orders-table td:nth-child(9),
+  .orders-table td:nth-child(10) {
+    width: 25px;
+  }
+  
+  .orders-table td:nth-child(11),
+  .orders-table td:nth-child(12),
+  .orders-table td:nth-child(13) {
+    width: 25px;
+  }
+  
+  .orders-table td,
+  .orders-table th {
+    font-size: 14px;
+    font-family: 'Arial', sans-serif;
+  }
+  
+  .orders-table td,
+  .orders-table th {
+    padding: 8px;
+  }
+  
+  .orders-table td:last-child {
+    text-align: center;
+  }
+  
+  @media (max-width: 768px) {
+    .orders-table th,
+    .orders-table td {
+      padding: 6px;
+      font-size: 12px;
+    }
+  
+    .orders-table td:nth-child(1),
+    .orders-table td:nth-child(2),
+    .orders-table td:nth-child(3),
+    .orders-table td:nth-child(4),
+    .orders-table td:nth-child(5) {
+      width: 25px;
+    }
+  
+    .orders-table td:nth-child(6),
+    .orders-table td:nth-child(7),
+    .orders-table td:nth-child(8),
+    .orders-table td:nth-child(9),
+    .orders-table td:nth-child(10) {
+      width: 25px;
+    }
+  
+    .orders-table td:nth-child(11),
+    .orders-table td:nth-child(12),
+    .orders-table td:nth-child(13) {
+      width: 25px;
+    }
+  }
+  
